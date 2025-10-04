@@ -41,7 +41,7 @@
             android:layout_marginTop="32dp">
 
             <RelativeLayout style="@style/Widget.App.CardContent">
-                <ImageView style="@style/Widget.App.CardIcon" android:src="@drawable/ic_qr_code"/>
+                <ImageView android:id="@+id/icon_mark_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_qr_code"/>
                 <TextView style="@style/Widget.App.CardTitle" android:layout_toStartOf="@id/arrow1" android:layout_toEndOf="@id/icon_mark_attendance" android:text="Mark by QR" />
                 <ImageView android:id="@+id/arrow1" style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
@@ -51,8 +51,8 @@
             android:id="@+id/card_mark_by_code"
             style="@style/AdminCardView">
             <RelativeLayout style="@style/Widget.App.CardContent">
-                <ImageView style="@style/Widget.App.CardIcon" android:src="@drawable/ic_pin_code"/>
-                <TextView style="@style/Widget.App.CardTitle" android:layout_toStartOf="@id/arrow2" android:layout_toEndOf="@id/icon_give_notification" android:text="Mark by Special Code" />
+                <ImageView android:id="@+id/icon_mark_by_code" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_pin_code"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toStartOf="@id/arrow2" android:layout_toEndOf="@id/icon_mark_by_code" android:text="Mark by Special Code" />
                 <ImageView android:id="@+id/arrow2" style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

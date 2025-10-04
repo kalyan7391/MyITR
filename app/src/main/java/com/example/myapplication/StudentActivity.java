@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView; // ✨ Import ImageView
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,6 @@ public class StudentActivity extends AppCompatActivity {
     private String username;
     private DatabaseHelper db;
 
-    // QR Code scanner launcher
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
             result -> {
                 if(result.getContents() == null) {
@@ -46,7 +46,6 @@ public class StudentActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         username = getIntent().getStringExtra("username");
 
-        // --- Find all UI elements ---
         TextView tvStudentName = findViewById(R.id.tv_student_name);
         Button btnScanQRCode = findViewById(R.id.btnScanQRCode);
         Button btnEnterCode = findViewById(R.id.btnEnterCode);
@@ -57,11 +56,22 @@ public class StudentActivity extends AppCompatActivity {
         CardView cardAssignments = findViewById(R.id.card_see_assignments);
         CardView cardScheduler = findViewById(R.id.card_scheduler);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        // ✨ Get the profile icon from the dashboard
+        ImageView profileIcon = findViewById(R.id.iv_profile_image);
 
-        // --- Set OnClick Listeners ---
         if (username != null && !username.isEmpty()) {
             tvStudentName.setText("Welcome, " + username);
         }
+
+        // ✨ Function to open the profile screen
+        Runnable openProfile = () -> {
+            Intent i = new Intent(StudentActivity.this, ProfileActivity.class);
+            i.putExtra("username", username);
+            startActivity(i);
+        };
+
+        // ✨ Make the top profile icon clickable
+        profileIcon.setOnClickListener(v -> openProfile.run());
 
         btnScanQRCode.setOnClickListener(v -> {
             ScanOptions options = new ScanOptions();
@@ -76,7 +86,6 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-        // Feature Cards
         cardViewAttendance.setOnClickListener(v -> {
             Intent i = new Intent(StudentActivity.this, AttendanceActivity.class);
             i.putExtra("username", username);
@@ -99,12 +108,14 @@ public class StudentActivity extends AppCompatActivity {
         cardFeedback.setOnClickListener(v -> startActivity(new Intent(this, FeedbackActivity.class)));
         cardAssignments.setOnClickListener(v -> startActivity(new Intent(this, AssignmentsActivity.class)));
 
-        // --- Bottom Navigation ---
         bottomNavigation.setSelectedItemId(R.id.nav_home);
         bottomNavigation.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
                 // Already here
+            } else if (itemId == R.id.nav_profile) {
+                // ✨ Make the bottom navigation profile item clickable
+                openProfile.run();
             } else {
                 Toast.makeText(this, item.getTitle() + " Clicked", Toast.LENGTH_SHORT).show();
             }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -38,9 +39,12 @@
         <activity android:name=".SyllabusActivity" />
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".AssignmentsActivity" />
-
         <activity android:name=".ScheduleActivity" />
         <activity android:name=".AddClassActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".PublishAssignmentActivity" />
+        <activity android:name=".ViewTeacherAttendanceActivity" />
+        <activity android:name=".SelectSubjectActivity" />
 
     </application>
 

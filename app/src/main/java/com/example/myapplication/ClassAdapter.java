@@ -8,9 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHolder> {
+public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ViewHolder> {
 
     private List<ClassItem> classList;
+    // ✨ FIX: Added an interface for click events
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(ClassItem item);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public ClassAdapter(List<ClassItem> classList) {
         this.classList = classList;
@@ -18,16 +28,23 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
 
     @NonNull
     @Override
-    public ClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_class, parent, false);
-        return new ClassViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClassViewHolder holder, int position) {
-        ClassItem currentClass = classList.get(position);
-        holder.className.setText(currentClass.getName());
-        holder.classTime.setText(currentClass.getTime());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ClassItem item = classList.get(position);
+        holder.name.setText(item.getName());
+        holder.description.setText(item.getDescription());
+
+        // ✨ FIX: Set the click listener on the item view
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(item);
+            }
+        });
     }
 
     @Override
@@ -35,12 +52,12 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         return classList.size();
     }
 
-    static class ClassViewHolder extends RecyclerView.ViewHolder {
-        TextView className, classTime;
-        public ClassViewHolder(@NonNull View itemView) {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView name, description;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            className = itemView.findViewById(R.id.class_name);
-            classTime = itemView.findViewById(R.id.class_time);
+            name = itemView.findViewById(R.id.tv_class_name);
+            description = itemView.findViewById(R.id.tv_class_description);
         }
     }
 }

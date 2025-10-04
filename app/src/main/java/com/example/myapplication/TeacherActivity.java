@@ -17,11 +17,12 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
-        // ✨ FIX: Using MaterialToolbar to match the XML layout
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         TextView tvWelcome = findViewById(R.id.tvWelcome);
         MaterialCardView cardMarkAttendance = findViewById(R.id.card_mark_attendance);
-        MaterialCardView cardGiveNotification = findViewById(R.id.card_give_notification);
+        // ✨ Find the new cards
+        MaterialCardView cardViewAttendance = findViewById(R.id.card_view_attendance);
+        MaterialCardView cardPublishAssignment = findViewById(R.id.card_publish_assignment);
         MaterialCardView cardSeeNotification = findViewById(R.id.card_see_notification);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
 
@@ -38,15 +39,24 @@ public class TeacherActivity extends AppCompatActivity {
             startActivity(i);
         });
 
+        // ✨ Add OnClickListener for Publish Assignment
+        cardPublishAssignment.setOnClickListener(v -> {
+            Intent i = new Intent(TeacherActivity.this, PublishAssignmentActivity.class);
+            i.putExtra("username", username);
+            startActivity(i);
+        });
+
+        // ✨ Add OnClickListener for View Attendance (for now, a placeholder)
+        cardViewAttendance.setOnClickListener(v -> {
+            Intent i = new Intent(TeacherActivity.this, ViewTeacherAttendanceActivity.class);
+            i.putExtra("username", username);
+            startActivity(i);
+        });
+
         cardSeeNotification.setOnClickListener(v -> {
             Intent i = new Intent(TeacherActivity.this, NotificationActivity.class);
             i.putExtra("userType", "teacher");
             startActivity(i);
-        });
-
-        cardGiveNotification.setOnClickListener(v -> {
-            Toast.makeText(this, "Opening notification sender...", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(TeacherActivity.this, SendNotificationActivity.class));
         });
 
         bottomNavigation.setOnItemSelectedListener(item -> {

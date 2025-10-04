@@ -5,25 +5,18 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="Teacher Panel"
-            app:titleCentered="true" />
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="Teacher Panel"
+        app:titleCentered="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appBarLayout"
+        android:layout_below="@id/toolbar"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -40,7 +33,6 @@
             android:id="@+id/card_mark_attendance"
             style="@style/AdminCardView"
             android:layout_marginTop="32dp">
-
             <RelativeLayout style="@style/Widget.App.CardContent">
                 <ImageView android:id="@+id/icon_mark_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_checklist"/>
                 <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_mark_attendance" android:text="Mark Student Attendance" />
@@ -49,11 +41,21 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_give_notification"
+            android:id="@+id/card_view_attendance"
             style="@style/AdminCardView">
             <RelativeLayout style="@style/Widget.App.CardContent">
-                <ImageView android:id="@+id/icon_give_notification" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_notification_add"/>
-                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_give_notification" android:text="Give Notification to Student" />
+                <ImageView android:id="@+id/icon_view_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_assignments"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_view_attendance" android:text="View Attendance" />
+                <ImageView style="@style/Widget.App.CardArrow"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_publish_assignment"
+            style="@style/AdminCardView">
+            <RelativeLayout style="@style/Widget.App.CardContent">
+                <ImageView android:id="@+id/icon_publish_assignment" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_notification_add"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_publish_assignment" android:text="Publish Assignment" />
                 <ImageView style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

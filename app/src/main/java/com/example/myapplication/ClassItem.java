@@ -2,18 +2,19 @@ package com.example.myapplication;
 
 public class ClassItem {
     private String name;
-    private String time;
+    private String description;
 
-    public ClassItem(String name, String time) {
+    public ClassItem(String name, String description) {
         this.name = name;
-        this.time = time;
+        this.description = description;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getTime() {
-        return time;
+    // ✨ FIX: Added the missing getDescription() method
+    public String getDescription() {
+        return description;
     }
 }
