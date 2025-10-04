@@ -1,14 +1,13 @@
 package com.example.myapplication;
 
-
+import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminActivity extends AppCompatActivity {
-    Button btnAddTeacher, btnAddStudent, btnManageTeacher, btnManageStudent;
+    Button btnAddTeacher, btnAddStudent, btnManageTeacher, btnManageStudent,btnSendNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +18,7 @@ public class AdminActivity extends AppCompatActivity {
         btnAddStudent = findViewById(R.id.btnAddStudent);
         btnManageTeacher = findViewById(R.id.btnManageTeacher);
         btnManageStudent = findViewById(R.id.btnManageStudent);
+        btnSendNotification = findViewById(R.id.btnSendNotification);
 
         btnAddTeacher.setOnClickListener(v -> {
             Intent i = new Intent(AdminActivity.this, AddTeacherActivity.class);
@@ -41,6 +41,10 @@ public class AdminActivity extends AppCompatActivity {
         btnManageStudent.setOnClickListener(v -> {
             Intent i = new Intent(AdminActivity.this, ManageListActivity.class);
             i.putExtra("mode", "student");
+            startActivity(i);
+        });
+        btnSendNotification.setOnClickListener(v -> {
+            Intent i = new Intent(AdminActivity.this, SendNotificationActivity.class);
             startActivity(i);
         });
     }

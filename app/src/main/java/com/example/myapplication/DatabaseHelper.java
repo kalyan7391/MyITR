@@ -12,10 +12,12 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "school.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 3;
 
     private static final String TABLE_TEACHERS = "teachers";
     private static final String TABLE_STUDENTS = "students";
+    private static final String TABLE_NOTIFICATIONS = "notifications";
+    private static final String TABLE_ATTENDANCE = "attendance";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -27,14 +29,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)";
         String createStudents = "CREATE TABLE " + TABLE_STUDENTS +
                 " (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)";
+        String createNotifications = "CREATE TABLE " + TABLE_NOTIFICATIONS +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT, userType TEXT, subject TEXT)";
+        String createAttendance = "CREATE TABLE " + TABLE_ATTENDANCE +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, student_username TEXT, date TEXT, status TEXT)";
         db.execSQL(createTeachers);
         db.execSQL(createStudents);
+        db.execSQL(createNotifications);
+        db.execSQL(createAttendance);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TEACHERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTIFICATIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ATTENDANCE);
         onCreate(db);
     }
 
@@ -118,5 +128,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         int rows = db.delete(TABLE_STUDENTS, "username=?", new String[]{username});
         return rows > 0;
+    }
+
+    public boolean addNotification(String message, String userType, String subject) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("message", message);
+        cv.put("userType", userType);
+        cv.put("subject", subject);
+        long id = db.insert(TABLE_NOTIFICATIONS, null, cv);
+        return id != -1;
+    }
+
+    public List<String> getNotifications(String userType) {
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT subject, message FROM " + TABLE_NOTIFICATIONS + " WHERE userType=? ORDER BY id DESC", new String[]{userType});
+        if (c.moveToFirst()) {
+            do {
+                list.add(c.getString(0) + ": " + c.getString(1));
+            } while (c.moveToNext());
+        }
+        c.close();
+        return list;
+    }
+    public boolean addAttendance(String studentUsername, String date, String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("student_username", studentUsername);
+        cv.put("date", date);
+        cv.put("status", status);
+        long id = db.insert(TABLE_ATTENDANCE, null, cv);
+        return id != -1;
+    }
+    public List<String> getAttendance(String studentUsername) {
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT date, status FROM " + TABLE_ATTENDANCE + " WHERE student_username=? ORDER BY date DESC", new String[]{studentUsername});
+        if (c.moveToFirst()) {
+            do {
+                list.add(c.getString(0) + ": " + c.getString(1));
+            } while (c.moveToNext());
+        }
+        c.close();
+        return list;
     }
 }
