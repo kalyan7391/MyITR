@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,7 +11,8 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "school.db";
-    private static final int DB_VERSION = 3;
+    // ✨ IMPORTANT: Incremented the database version
+    private static final int DB_VERSION = 4;
 
     private static final String TABLE_TEACHERS = "teachers";
     private static final String TABLE_STUDENTS = "students";
@@ -31,8 +31,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 " (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)";
         String createNotifications = "CREATE TABLE " + TABLE_NOTIFICATIONS +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, message TEXT, userType TEXT, subject TEXT)";
+
+        // ✨ FIXED: Corrected attendance table schema
         String createAttendance = "CREATE TABLE " + TABLE_ATTENDANCE +
-                "(id INTEGER PRIMARY KEY AUTOINCREMENT, student_username TEXT, date TEXT, status TEXT)";
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, student_username TEXT, teacher_username TEXT, subject TEXT, date TEXT, status TEXT)";
+
         db.execSQL(createTeachers);
         db.execSQL(createStudents);
         db.execSQL(createNotifications);
@@ -152,22 +155,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return list;
     }
-    public boolean addAttendance(String studentUsername, String date, String status) {
+
+    // ✨ FIXED: Corrected the addAttendance method signature and implementation
+    public boolean addAttendance(String studentUsername,String teacherUsername, String subject, String date, String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("student_username", studentUsername);
+        cv.put("teacher_username", teacherUsername);
+        cv.put("subject", subject);
         cv.put("date", date);
         cv.put("status", status);
         long id = db.insert(TABLE_ATTENDANCE, null, cv);
         return id != -1;
     }
+
+    // ✨ FIXED: Updated getAttendance to retrieve and format the new data
     public List<String> getAttendance(String studentUsername) {
         List<String> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT date, status FROM " + TABLE_ATTENDANCE + " WHERE student_username=? ORDER BY date DESC", new String[]{studentUsername});
+        Cursor c = db.rawQuery("SELECT teacher_username, subject, date, status FROM " + TABLE_ATTENDANCE + " WHERE student_username=? ORDER BY date DESC", new String[]{studentUsername});
         if (c.moveToFirst()) {
             do {
-                list.add(c.getString(0) + ": " + c.getString(1));
+                list.add(c.getString(0) + " (" + c.getString(1) + ") - " + c.getString(2) + ": " + c.getString(3));
             } while (c.moveToNext());
         }
         c.close();

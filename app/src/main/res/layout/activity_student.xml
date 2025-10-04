@@ -17,4 +17,23 @@
         android:layout_height="wrap_content"
         android:text="View Notifications" />
 
-</LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnViewAttendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Attendance" />
+    <Button
+        android:id="@+id/btnScanQRCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan QR Code" />
+
+    <Button
+        android:id="@+id/btnEnterCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Code" />
+
+    </LinearLayout>
