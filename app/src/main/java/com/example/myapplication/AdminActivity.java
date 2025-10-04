@@ -75,6 +75,11 @@ public class AdminActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_settings) {
                 Toast.makeText(AdminActivity.this, "Settings clicked", Toast.LENGTH_SHORT).show();
             }
+            else if (itemId == R.id.nav_schedule) {
+                Intent i = new Intent(AdminActivity.this, ScheduleActivity.class);
+                i.putExtra("USER_ROLE", "admin"); // Tell the next screen the user is an admin
+                startActivity(i);
+            }
             // Return true to display the item as the selected item
             return true;
         });

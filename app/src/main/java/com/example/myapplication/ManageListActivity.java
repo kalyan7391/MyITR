@@ -14,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+// ✨ Update the implemented interface
 public class ManageListActivity extends AppCompatActivity implements UserAdapter.OnUserActionsListener {
 
     private RecyclerView recyclerView;
     private UserAdapter adapter;
     private DatabaseHelper db;
-    private String mode; // "teacher" or "student"
+    private String mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,39 +58,39 @@ public class ManageListActivity extends AppCompatActivity implements UserAdapter
     }
 
     private void loadList() {
-        List<String> userList;
+        // ✨ The database now returns a List of User objects
+        List<User> userList;
         if (mode.equals("teacher")) {
             userList = db.getAllTeachers();
         } else {
             userList = db.getAllStudents();
         }
-        // "this" refers to the activity, which implements the listener interface
         adapter = new UserAdapter(userList, this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void onEditUser(String username) {
-        // You can implement an edit screen here in the future
-        Toast.makeText(this, "Edit " + username, Toast.LENGTH_SHORT).show();
+    public void onEditUser(User user) {
+        Toast.makeText(this, "Edit " + user.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onDeleteUser(String username) {
+    public void onDeleteUser(User user) {
+        // ✨ Use the user's name in the dialog
         new AlertDialog.Builder(this)
                 .setTitle("Delete User")
-                .setMessage("Are you sure you want to delete " + username + "?")
+                .setMessage("Are you sure you want to delete " + user.getName() + "?")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     boolean isDeleted;
                     if (mode.equals("teacher")) {
-                        isDeleted = db.deleteTeacher(username);
+                        isDeleted = db.deleteTeacher(user.getName());
                     } else {
-                        isDeleted = db.deleteStudent(username);
+                        isDeleted = db.deleteStudent(user.getName());
                     }
 
                     if (isDeleted) {
-                        Toast.makeText(this, username + " deleted", Toast.LENGTH_SHORT).show();
-                        loadList(); // Refresh the list
+                        Toast.makeText(this, user.getName() + " deleted", Toast.LENGTH_SHORT).show();
+                        loadList();
                     } else {
                         Toast.makeText(this, "Failed to delete", Toast.LENGTH_SHORT).show();
                     }

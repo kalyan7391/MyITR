@@ -19,4 +19,62 @@
         <item name="cardElevation">4dp</item>
         <item name="strokeWidth">0dp</item>
     </style>
+
+    <style name="Widget.App.CardContent" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    <style name="Widget.App.CardIcon" parent="">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:tint">@color/colorPrimary</item>
+    </style>
+    <style name="Widget.App.CardTitle" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Widget.App.CardArrow" parent="">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/ic_arrow_forward</item>
+        <item name="android:tint">@color/textColorSecondary</item>
+    </style>
+    <style name="Widget.App.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:drawable">@drawable/bottom_nav_selected_background</item>
+    </style>
+
+    <style name="StudentDashboardCard" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+    <style name="StudentDashboardCardContent" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    <style name="StudentDashboardCardIcon" parent="">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:tint">@color/colorPrimary</item>
+    </style>
+    <style name="StudentDashboardCardText" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
 </resources>

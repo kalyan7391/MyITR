@@ -23,8 +23,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appBarLayout"
-        android:layout_above="@id/btnAddUser">
+        android:layout_above="@id/btnAddUser"
+        android:layout_below="@id/appBarLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +38,6 @@
                 android:background="@drawable/add_user_edit_text_background"
                 android:orientation="horizontal"
                 android:padding="4dp">
-
                 <TextView
                     android:id="@+id/toggleTeacher"
                     android:layout_width="0dp"
@@ -50,7 +49,6 @@
                     android:text="Add Teacher"
                     android:textColor="@color/textColorPrimary"
                     android:textStyle="bold" />
-
                 <TextView
                     android:id="@+id/toggleStudent"
                     android:layout_width="0dp"
@@ -63,63 +61,30 @@
                     android:textColor="@color/textColorSecondary" />
             </LinearLayout>
 
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Name"
-                android:textColor="@color/textColorPrimary" />
+            <TextView style="@style/TextAppearance.MaterialComponents.Body1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="Name" android:textColor="@color/textColorPrimary" />
+            <EditText android:id="@+id/etName" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:background="@drawable/add_user_edit_text_background" android:hint="Enter name" android:inputType="textPersonName" android:paddingStart="16dp" android:paddingEnd="16dp" />
 
+            <TextView android:id="@+id/tvEmployeeIdLabel" style="@style/TextAppearance.MaterialComponents.Body1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Employee ID" android:textColor="@color/textColorPrimary" />
+            <EditText android:id="@+id/etEmployeeId" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:background="@drawable/add_user_edit_text_background" android:hint="Enter employee ID" android:inputType="text" android:paddingStart="16dp" android:paddingEnd="16dp" />
+
+            <TextView style="@style/TextAppearance.MaterialComponents.Body1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Phone Number" android:textColor="@color/textColorPrimary" />
+            <EditText android:id="@+id/etPhone" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:background="@drawable/add_user_edit_text_background" android:hint="Enter phone number" android:inputType="phone" android:paddingStart="16dp" android:paddingEnd="16dp" />
+
+            <TextView style="@style/TextAppearance.MaterialComponents.Body1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Date of Birth" android:textColor="@color/textColorPrimary" />
             <EditText
-                android:id="@+id/etName"
+                android:id="@+id/etDob"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/add_user_edit_text_background"
-                android:hint="Enter name"
-                android:inputType="textPersonName"
+                android:drawableEnd="@drawable/ic_calendar_today"
+                android:focusable="false"
+                android:hint="mm/dd/yyyy"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp" />
 
-            <TextView
-                android:id="@+id/tvEmployeeIdLabel"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Employee ID"
-                android:textColor="@color/textColorPrimary" />
-
-            <EditText
-                android:id="@+id/etEmployeeId"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/add_user_edit_text_background"
-                android:hint="Enter employee ID"
-                android:inputType="text"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Password"
-                android:textColor="@color/textColorPrimary" />
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/add_user_edit_text_background"
-                android:hint="Enter password"
-                android:inputType="textPassword"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp" />
+            <TextView style="@style/TextAppearance.MaterialComponents.Body1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Password" android:textColor="@color/textColorPrimary" />
+            <EditText android:id="@+id/etPassword" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="8dp" android:background="@drawable/add_user_edit_text_background" android:hint="Enter password" android:inputType="textPassword" android:paddingStart="16dp" android:paddingEnd="16dp" />
 
         </LinearLayout>
     </ScrollView>
@@ -135,5 +100,4 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp" />
-
 </RelativeLayout>

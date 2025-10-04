@@ -1,29 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/colorBackground">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_teacher"
-        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
-
-    <Button
-        android:id="@+id/btnViewNotifications"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/view_notifications" />
+        android:background="@color/colorBackground">
 
-    <Button
-        android:id="@+id/btnMarkAttendance"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="Teacher Panel"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/mark_attendance" />
-</LinearLayout>
+        android:layout_below="@id/appBarLayout"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome, Teacher"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_mark_attendance"
+            style="@style/AdminCardView"
+            android:layout_marginTop="32dp">
+
+            <RelativeLayout style="@style/Widget.App.CardContent">
+                <ImageView android:id="@+id/icon_mark_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_checklist"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_mark_attendance" android:text="Mark Student Attendance" />
+                <ImageView style="@style/Widget.App.CardArrow"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_give_notification"
+            style="@style/AdminCardView">
+            <RelativeLayout style="@style/Widget.App.CardContent">
+                <ImageView android:id="@+id/icon_give_notification" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_notification_add"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_give_notification" android:text="Give Notification to Student" />
+                <ImageView style="@style/Widget.App.CardArrow"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_see_notification"
+            style="@style/AdminCardView">
+            <RelativeLayout style="@style/Widget.App.CardContent">
+                <ImageView android:id="@+id/icon_see_notification" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_notifications"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_see_notification" android:text="See Notification from Admin" />
+                <ImageView style="@style/Widget.App.CardArrow"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        app:itemIconTint="@color/bottom_nav_item_tint"
+        app:itemTextColor="@color/bottom_nav_item_tint"
+        app:itemActiveIndicatorStyle="@style/Widget.App.BottomNavigationView.ActiveIndicator"
+        app:menu="@menu/teacher_bottom_nav_menu" />
+
+</RelativeLayout>

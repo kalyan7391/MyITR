@@ -24,18 +24,23 @@
         </activity>
 
         <activity android:name=".LoginActivity" />
-
-        <activity android:name=".StudentActivity" />
-        <activity android:name=".TeacherActivity" />
-        <activity android:name=".ManageListActivity" />
-        <activity android:name=".AddTeacherActivity" />
         <activity android:name=".AdminActivity" />
+        <activity android:name=".TeacherActivity" />
+        <activity android:name=".StudentActivity" />
+        <activity android:name=".AddTeacherActivity" />
+        <activity android:name=".ManageListActivity" />
         <activity android:name=".SendNotificationActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".MarkAttendanceOptionsActivity" />
         <activity android:name=".GenerateCodeActivity" />
         <activity android:name=".EnterCodeActivity" />
+        <activity android:name=".SyllabusActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".AssignmentsActivity" />
+
+        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".AddClassActivity" />
 
     </application>
 

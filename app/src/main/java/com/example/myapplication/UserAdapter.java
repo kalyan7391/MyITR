@@ -10,19 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+// ✨ Change the adapter to work with a List of User objects
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    private List<String> userList;
-    private List<String> userListFull; // A copy for filtering
+    private List<User> userList;
+    private List<User> userListFull;
     private OnUserActionsListener listener;
 
-    // Interface to handle clicks
     public interface OnUserActionsListener {
-        void onEditUser(String username);
-        void onDeleteUser(String username);
+        void onEditUser(User user);
+        void onDeleteUser(User user);
     }
 
-    public UserAdapter(List<String> userList, OnUserActionsListener listener) {
+    public UserAdapter(List<User> userList, OnUserActionsListener listener) {
         this.userList = userList;
         this.userListFull = new ArrayList<>(userList);
         this.listener = listener;
@@ -37,13 +37,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        String username = userList.get(position);
-        holder.tvUserName.setText(username);
-        // Note: Your DB only has username. We'll set placeholder text for other details.
-        holder.tvUserDetails.setText("Username: " + username);
+        User currentUser = userList.get(position);
 
-        holder.ivEdit.setOnClickListener(v -> listener.onEditUser(username));
-        holder.ivDelete.setOnClickListener(v -> listener.onDeleteUser(username));
+        // ✨ Set all the text fields from the User object
+        holder.tvUserName.setText(currentUser.getName());
+        String details = "Employee ID: " + currentUser.getEmployeeId() + "\n" +
+                "Phone: " + currentUser.getPhone() + " | DOB: " + currentUser.getDob();
+        holder.tvUserDetails.setText(details);
+
+        holder.ivEdit.setOnClickListener(v -> listener.onEditUser(currentUser));
+        holder.ivDelete.setOnClickListener(v -> listener.onDeleteUser(currentUser));
     }
 
     @Override
@@ -51,15 +54,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return userList.size();
     }
 
-    // Method to filter the list based on search query
     public void filter(String text) {
         userList.clear();
         if (text.isEmpty()) {
             userList.addAll(userListFull);
         } else {
             text = text.toLowerCase();
-            for (String item : userListFull) {
-                if (item.toLowerCase().contains(text)) {
+            for (User item : userListFull) {
+                // Filter by name or ID
+                if (item.getName().toLowerCase().contains(text) || item.getEmployeeId().contains(text)) {
                     userList.add(item);
                 }
             }
