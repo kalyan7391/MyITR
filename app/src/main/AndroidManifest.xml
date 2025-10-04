@@ -14,6 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
+        <activity
+            android:name=".RoleSelectionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity" />
+
         <activity android:name=".StudentActivity" />
         <activity android:name=".TeacherActivity" />
         <activity android:name=".ManageListActivity" />
@@ -21,20 +32,10 @@
         <activity android:name=".AdminActivity" />
         <activity android:name=".SendNotificationActivity" />
         <activity android:name=".NotificationActivity" />
-
         <activity android:name=".AttendanceActivity" />
         <activity android:name=".MarkAttendanceOptionsActivity" />
         <activity android:name=".GenerateCodeActivity" />
         <activity android:name=".EnterCodeActivity" />
-
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
     </application>
 

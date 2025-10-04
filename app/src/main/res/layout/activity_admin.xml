@@ -1,22 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
-    <Button android:id="@+id/btnAddTeacher" android:text="Add Teacher" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <Button android:id="@+id/btnAddStudent" android:text="Add Student" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
-    <Button android:id="@+id/btnManageTeacher" android:text="Manage Teacher" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
-    <Button android:id="@+id/btnManageStudent" android:text="Manage Student" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"/>
-    <Button
-        android:id="@+id/btnSendNotification"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorBackground"
+            app:navigationIcon="@drawable/ic_menu"
+            app:title="Admin Panel"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/appBarLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manage Users"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_add_teacher"
+                style="@style/AdminCardView">
+                <include layout="@layout/admin_card_item"
+                    android:id="@+id/item_add_teacher"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_manage_teachers"
+                style="@style/AdminCardView">
+                <include layout="@layout/admin_card_item"
+                    android:id="@+id/item_manage_teachers"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_add_student"
+                style="@style/AdminCardView">
+                <include layout="@layout/admin_card_item"
+                    android:id="@+id/item_add_student"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_manage_students"
+                style="@style/AdminCardView">
+                <include layout="@layout/admin_card_item"
+                    android:id="@+id/item_manage_students"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Communication"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_send_notification"
+                style="@style/AdminCardView">
+                <include layout="@layout/admin_card_item"
+                    android:id="@+id/item_send_notification"/>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Notification" />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/admin_bottom_nav_menu" />
+
+</RelativeLayout>

@@ -3,23 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome, Teacher"
-        android:textSize="24sp" />
+        android:text="@string/welcome_teacher"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
+
     <Button
         android:id="@+id/btnViewNotifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Notifications" />
+        android:layout_marginTop="24dp"
+        android:text="@string/view_notifications" />
+
     <Button
         android:id="@+id/btnMarkAttendance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mark Attendance" />
-
+        android:layout_marginTop="8dp"
+        android:text="@string/mark_attendance" />
 </LinearLayout>

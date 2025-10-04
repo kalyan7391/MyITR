@@ -2,83 +2,99 @@ package com.example.myapplication;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ManageListActivity extends AppCompatActivity {
-    ListView listView;
-    TextView tvTitle;
-    DatabaseHelper db;
-    String mode;
-    ArrayAdapter<String> adapter;
-    List<String> items;
+public class ManageListActivity extends AppCompatActivity implements UserAdapter.OnUserActionsListener {
+
+    private RecyclerView recyclerView;
+    private UserAdapter adapter;
+    private DatabaseHelper db;
+    private String mode; // "teacher" or "student"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_list);
+
         db = new DatabaseHelper(this);
-        listView = findViewById(R.id.listItems);
-        tvTitle = findViewById(R.id.tvListTitle);
         mode = getIntent().getStringExtra("mode");
         if (mode == null) mode = "teacher";
-        tvTitle.setText(mode.equals("teacher") ? "Teachers" : "Students");
 
-        // Initialize the items list and adapter here
-        items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
-        listView.setAdapter(adapter);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(mode.equals("teacher") ? "Manage Teachers" : "Manage Students");
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        recyclerView = findViewById(R.id.recycler_view_users);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        EditText etSearch = findViewById(R.id.et_search);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (adapter != null) {
+                    adapter.filter(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         loadList();
-
-        listView.setOnItemLongClickListener((parent, view, position, id) -> {
-            String username = items.get(position);
-            new AlertDialog.Builder(ManageListActivity.this)
-                    .setTitle("Delete")
-                    .setMessage("Delete " + username + "?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        boolean ok;
-                        if (mode.equals("teacher")) {
-                            ok = db.deleteTeacher(username);
-                        } else {
-                            ok = db.deleteStudent(username);
-                        }
-
-                        if (ok) {
-                            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
-                            loadList(); // Reload the list
-                        } else {
-                            Toast.makeText(this, "Delete failed", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-            return true;
-        });
     }
 
     private void loadList() {
-        // Get the new data from the database
-        List<String> newItems;
+        List<String> userList;
         if (mode.equals("teacher")) {
-            newItems = db.getAllTeachers();
+            userList = db.getAllTeachers();
         } else {
-            newItems = db.getAllStudents();
+            userList = db.getAllStudents();
         }
+        // "this" refers to the activity, which implements the listener interface
+        adapter = new UserAdapter(userList, this);
+        recyclerView.setAdapter(adapter);
+    }
 
-        // Clear the old data from the adapter
-        items.clear();
-        // Add the new data
-        items.addAll(newItems);
-        // Notify the adapter that the data has changed
-        adapter.notifyDataSetChanged();
+    @Override
+    public void onEditUser(String username) {
+        // You can implement an edit screen here in the future
+        Toast.makeText(this, "Edit " + username, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteUser(String username) {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete User")
+                .setMessage("Are you sure you want to delete " + username + "?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    boolean isDeleted;
+                    if (mode.equals("teacher")) {
+                        isDeleted = db.deleteTeacher(username);
+                    } else {
+                        isDeleted = db.deleteStudent(username);
+                    }
+
+                    if (isDeleted) {
+                        Toast.makeText(this, username + " deleted", Toast.LENGTH_SHORT).show();
+                        loadList(); // Refresh the list
+                    } else {
+                        Toast.makeText(this, "Failed to delete", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
