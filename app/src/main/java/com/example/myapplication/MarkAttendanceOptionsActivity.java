@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+// ✨ FIX: Import MaterialToolbar
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 
@@ -17,26 +18,19 @@ public class MarkAttendanceOptionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mark_attendance_options);
 
-        // Get the teacher's username from the previous screen
         teacherUsername = getIntent().getStringExtra("username");
 
-        // Find Views
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        // ✨ FIX: Use MaterialToolbar class
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         MaterialCardView cardMarkByQr = findViewById(R.id.card_mark_by_qr);
         MaterialCardView cardMarkByCode = findViewById(R.id.card_mark_by_code);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
 
-        // Toolbar back button
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        // --- UPDATED CLICK LISTENERS ---
-        // No more pop-up dialog. Generate QR code immediately.
         cardMarkByQr.setOnClickListener(v -> generateCode("qr"));
-
-        // No more pop-up dialog. Generate special code immediately.
         cardMarkByCode.setOnClickListener(v -> generateCode("code"));
 
-        // Set up Bottom Navigation
         bottomNavigation.setSelectedItemId(R.id.nav_attendance);
         bottomNavigation.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
@@ -49,15 +43,8 @@ public class MarkAttendanceOptionsActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * This method now immediately starts the GenerateCodeActivity
-     * with a default subject.
-     * @param type "qr" or "code"
-     */
     private void generateCode(String type) {
-        // We'll use a default subject automatically
         String defaultSubject = "Class Attendance";
-
         Intent i = new Intent(MarkAttendanceOptionsActivity.this, GenerateCodeActivity.class);
         i.putExtra("teacher_username", teacherUsername);
         i.putExtra("subject", defaultSubject);

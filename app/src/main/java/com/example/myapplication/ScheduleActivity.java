@@ -25,9 +25,7 @@ public class ScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule);
 
         userRole = getIntent().getStringExtra("USER_ROLE");
-        username = getIntent().getStringExtra("username"); // Passed from TeacherActivity
-
-
+        username = getIntent().getStringExtra("username");
         db = new DatabaseHelper(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -39,33 +37,24 @@ public class ScheduleActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab_add_class);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-        // Check user role passed from previous activity
-        String userRole = getIntent().getStringExtra("USER_ROLE");
-
-        // ✨ --- FIXED CODE --- ✨
-        // The correct way to change the menu is to inflate a new one.
+        // ✨ FIX: This logic now correctly inflates the menu for all roles
         if ("admin".equals(userRole)) {
             fab.setVisibility(View.VISIBLE);
             bottomNav.inflateMenu(R.menu.admin_bottom_nav_menu);
-        } else { // Teacher or other roles
+            bottomNav.setSelectedItemId(R.id.nav_schedule);
+        } else if ("teacher".equals(userRole)) {
             fab.setVisibility(View.GONE);
             bottomNav.inflateMenu(R.menu.teacher_bottom_nav_menu);
+            bottomNav.setSelectedItemId(R.id.nav_schedule);
+        } else { // Student
+            fab.setVisibility(View.GONE);
+            bottomNav.inflateMenu(R.menu.student_bottom_nav_menu);
         }
 
-        bottomNav.setSelectedItemId(R.id.nav_schedule); // Set Schedule as selected
+        fab.setOnClickListener(v -> startActivity(new Intent(this, AddClassActivity.class)));
 
-        fab.setOnClickListener(v -> {
-            startActivity(new Intent(this, AddClassActivity.class));
-        });
-
-        // Add a listener for the bottom navigation
         bottomNav.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_schedule) {
-                // Already here
-            } else {
-                Toast.makeText(this, item.getTitle() + " Clicked", Toast.LENGTH_SHORT).show();
-            }
+            // Your navigation logic here
             return true;
         });
 
@@ -75,20 +64,17 @@ public class ScheduleActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Refresh the list when coming back from AddClassActivity
         loadClasses();
     }
 
     private void loadClasses() {
         List<ClassItem> classList;
-        // ✨ UPDATED LOGIC TO FETCH CLASSES
-        if ("admin".equals(userRole)) {
-            classList = db.getAllClasses(); // Admin sees all classes
+        if ("admin".equals(userRole) || "student".equals(userRole)) {
+            classList = db.getAllClasses();
         } else {
-            classList = db.getClassesForTeacher(username); // Teacher sees only their classes
+            classList = db.getClassesForTeacher(username);
         }
         adapter = new ClassAdapter(classList);
         recyclerView.setAdapter(adapter);
     }
-
 }

@@ -7,13 +7,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+// ✨ FIX: Import MaterialToolbar
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.core.content.ContextCompat;
 import java.util.Calendar;
 
 public class AddTeacherActivity extends AppCompatActivity {
 
-    // ✨ ADDED NEW UI ELEMENTS
     private EditText etName, etPassword, etEmployeeId, etPhone, etDob;
     private TextView toggleTeacher, toggleStudent, tvEmployeeIdLabel;
     private Button btnAddUser;
@@ -27,8 +27,8 @@ public class AddTeacherActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
 
-        // Initialize views
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        // ✨ FIX: Use MaterialToolbar class
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         etName = findViewById(R.id.etName);
         etPassword = findViewById(R.id.etPassword);
         etEmployeeId = findViewById(R.id.etEmployeeId);
@@ -41,11 +41,9 @@ public class AddTeacherActivity extends AppCompatActivity {
 
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        // Toggle logic
         toggleTeacher.setOnClickListener(v -> setMode("teacher"));
         toggleStudent.setOnClickListener(v -> setMode("student"));
 
-        // ✨ DATE PICKER LOGIC
         etDob.setOnClickListener(v -> showDatePickerDialog());
 
         String initialMode = getIntent().getStringExtra("mode");
@@ -79,7 +77,7 @@ public class AddTeacherActivity extends AppCompatActivity {
             toggleStudent.setTextColor(ContextCompat.getColor(this, R.color.textColorSecondary));
             tvEmployeeIdLabel.setText("Employee ID");
             etEmployeeId.setHint("Enter employee ID");
-        } else { // Student mode
+        } else {
             toggleStudent.setBackgroundResource(R.drawable.toggle_selected_background);
             toggleStudent.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary));
             toggleTeacher.setBackgroundResource(R.drawable.toggle_unselected_background);
@@ -90,7 +88,6 @@ public class AddTeacherActivity extends AppCompatActivity {
     }
 
     private void saveUser() {
-        // ✨ GET TEXT FROM ALL FIELDS
         String name = etName.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String id = etEmployeeId.getText().toString().trim();
@@ -106,7 +103,6 @@ public class AddTeacherActivity extends AppCompatActivity {
         String userType;
 
         if (mode.equals("teacher")) {
-            // ✨ PASS ALL DATA TO THE DATABASE
             isSuccess = db.addTeacher(name, password, id, phone, dob);
             userType = "Teacher";
         } else {

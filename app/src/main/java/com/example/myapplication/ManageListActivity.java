@@ -6,15 +6,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+// ✨ FIX: Import MaterialToolbar
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
-// ✨ Update the implemented interface
 public class ManageListActivity extends AppCompatActivity implements UserAdapter.OnUserActionsListener {
 
     private RecyclerView recyclerView;
@@ -31,7 +29,8 @@ public class ManageListActivity extends AppCompatActivity implements UserAdapter
         mode = getIntent().getStringExtra("mode");
         if (mode == null) mode = "teacher";
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        // ✨ FIX: Use MaterialToolbar class
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(mode.equals("teacher") ? "Manage Teachers" : "Manage Students");
         toolbar.setNavigationOnClickListener(v -> finish());
 
@@ -58,7 +57,6 @@ public class ManageListActivity extends AppCompatActivity implements UserAdapter
     }
 
     private void loadList() {
-        // ✨ The database now returns a List of User objects
         List<User> userList;
         if (mode.equals("teacher")) {
             userList = db.getAllTeachers();
@@ -76,7 +74,6 @@ public class ManageListActivity extends AppCompatActivity implements UserAdapter
 
     @Override
     public void onDeleteUser(User user) {
-        // ✨ Use the user's name in the dialog
         new AlertDialog.Builder(this)
                 .setTitle("Delete User")
                 .setMessage("Are you sure you want to delete " + user.getName() + "?")

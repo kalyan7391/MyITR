@@ -1,18 +1,17 @@
-// app/src/main/java/com/example/myapplication/NotificationActivity.java
 package com.example.myapplication;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity {
-    ListView lvNotifications;
-    DatabaseHelper db;
-    String userType;
+    private RecyclerView recyclerView;
+    private NoticeAdapter adapter;
+    private DatabaseHelper db;
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +19,19 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         db = new DatabaseHelper(this);
-        lvNotifications = findViewById(R.id.lvNotifications);
         userType = getIntent().getStringExtra("userType");
 
-        List<String> notifications = db.getNotifications(userType);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, notifications);
-        lvNotifications.setAdapter(adapter);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(v -> finish());
+
+        // ✨ FIX: All code related to the BottomNavigationView has been removed.
+
+        recyclerView = findViewById(R.id.recycler_view_notifications);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<Notice> notifications = db.getNotifications(userType);
+
+        adapter = new NoticeAdapter(notifications);
+        recyclerView.setAdapter(adapter);
     }
 }

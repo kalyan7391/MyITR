@@ -27,7 +27,7 @@ public class StudentActivity extends AppCompatActivity {
                     Toast.makeText(StudentActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
                 } else {
                     String[] data = result.getContents().split(":");
-                    if (data.length >= 2) { // Use >= 2 to be safe with the new timestamp
+                    if (data.length >= 2) {
                         String teacherUsername = data[0];
                         String subject = data[1];
                         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -47,9 +47,7 @@ public class StudentActivity extends AppCompatActivity {
         username = getIntent().getStringExtra("username");
 
         // --- Find all UI elements ---
-        TextView tvStudentName = findViewById(R.id.tv_student_name); // ✨ Find the new TextView
-
-
+        TextView tvStudentName = findViewById(R.id.tv_student_name);
         Button btnScanQRCode = findViewById(R.id.btnScanQRCode);
         Button btnEnterCode = findViewById(R.id.btnEnterCode);
         CardView cardViewAttendance = findViewById(R.id.card_view_attendance);
@@ -64,7 +62,7 @@ public class StudentActivity extends AppCompatActivity {
         if (username != null && !username.isEmpty()) {
             tvStudentName.setText("Welcome, " + username);
         }
-        // Attendance Buttons
+
         btnScanQRCode.setOnClickListener(v -> {
             ScanOptions options = new ScanOptions();
             options.setPrompt("Scan QR Code for Attendance");
@@ -92,13 +90,11 @@ public class StudentActivity extends AppCompatActivity {
         });
 
         cardScheduler.setOnClickListener(v -> {
-            // Students can also view the schedule
             Intent i = new Intent(StudentActivity.this, ScheduleActivity.class);
             i.putExtra("USER_ROLE", "student");
             startActivity(i);
         });
 
-        // Placeholder Activities
         cardSyllabus.setOnClickListener(v -> startActivity(new Intent(this, SyllabusActivity.class)));
         cardFeedback.setOnClickListener(v -> startActivity(new Intent(this, FeedbackActivity.class)));
         cardAssignments.setOnClickListener(v -> startActivity(new Intent(this, AssignmentsActivity.class)));

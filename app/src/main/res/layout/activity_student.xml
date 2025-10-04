@@ -61,20 +61,20 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnterCode"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_secondary_background"
-                android:text="Mark Attendance by Code"
-                android:drawableStart="@drawable/ic_pin_code"
-                android:paddingStart="20dp"
-                android:drawablePadding="12dp"
-                android:gravity="start|center_vertical"
                 android:layout_marginTop="8dp"
+                android:text="Mark Attendance by Code"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                app:backgroundTint="#E0EFFF"
+                app:icon="@drawable/ic_pin_code"
+                app:iconPadding="12dp"
+                app:iconTint="@color/colorPrimary" />
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Features" android:textColor="@color/textColorPrimary" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="24dp"/>
             <GridLayout
