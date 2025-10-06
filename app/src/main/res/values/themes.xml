@@ -1,18 +1,25 @@
+<!-- res/values/themes.xml -->
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
     <style name="Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
         <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
+        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Background and surface colors -->
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="colorSurface">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
     </style>
 
+    <!-- Style for Dashboard Cards -->
     <style name="DashboardCard" parent="Widget.Material3.CardView.Elevated">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -60,6 +67,7 @@
         <item name="android:drawable">@drawable/bottom_nav_selected_background</item>
     </style>
 
+    <!-- Styles for Student Dashboard Cards -->
     <style name="StudentDashboardCardContent" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
