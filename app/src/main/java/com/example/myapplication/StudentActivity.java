@@ -3,7 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView; // ✨ Import ImageView
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,21 +56,18 @@ public class StudentActivity extends AppCompatActivity {
         CardView cardAssignments = findViewById(R.id.card_see_assignments);
         CardView cardScheduler = findViewById(R.id.card_scheduler);
         BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
-        // ✨ Get the profile icon from the dashboard
         ImageView profileIcon = findViewById(R.id.iv_profile_image);
 
         if (username != null && !username.isEmpty()) {
             tvStudentName.setText("Welcome, " + username);
         }
 
-        // ✨ Function to open the profile screen
         Runnable openProfile = () -> {
             Intent i = new Intent(StudentActivity.this, ProfileActivity.class);
             i.putExtra("username", username);
             startActivity(i);
         };
 
-        // ✨ Make the top profile icon clickable
         profileIcon.setOnClickListener(v -> openProfile.run());
 
         btnScanQRCode.setOnClickListener(v -> {
@@ -114,7 +111,6 @@ public class StudentActivity extends AppCompatActivity {
             if (itemId == R.id.nav_home) {
                 // Already here
             } else if (itemId == R.id.nav_profile) {
-                // ✨ Make the bottom navigation profile item clickable
                 openProfile.run();
             } else {
                 Toast.makeText(this, item.getTitle() + " Clicked", Toast.LENGTH_SHORT).show();

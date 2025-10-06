@@ -8,13 +8,23 @@
     <color name="text_secondary">#757575</color>
     <color name="card_background">#FFFFFF</color>
 
-    <color name="colorPrimary">#0D6EFC</color>
-    <color name="colorBackground">#F0F4F8</color>
-    <color name="textColorPrimary">#1E2A3B</color>
-    <color name="textColorSecondary">#5A6A85</color>
-    <color name="colorIconBackground">#E0EFFF</color>
     <color name="colorHint">#A0AEC0</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#4A90E2</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryContainer">#D8E6FF</color>
+    <color name="colorOnPrimaryContainer">#001D36</color>
+    <color name="colorSecondary">#526070</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorBackground">#F8F9FA</color>
+    <color name="colorOnBackground">#191C1E</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#191C1E</color>
+    <color name="colorOnSurfaceVariant">#43474E</color>
+    <color name="textColorPrimary">#1E2A3B</color>
+    <color name="textColorSecondary">#5A6A85</color>
+    <color name="colorIconBackground">#E0EFFF</color>
 </resources>

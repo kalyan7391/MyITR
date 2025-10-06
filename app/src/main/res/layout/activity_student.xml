@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground">
+    android:background="?android:attr/colorBackground">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,9 +24,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dashboard"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                    android:textColor="?attr/colorOnBackground"
                     android:layout_centerVertical="true"/>
                 <TextView
                     android:id="@+id/tv_student_name"
@@ -34,8 +33,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/dashboard_title"
                     android:text="Welcome, Student"
-                    android:textColor="@color/textColorSecondary"
-                    android:textSize="16sp" />
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
+                    android:textColor="?attr/colorOnSurfaceVariant" />
                 <ImageView
                     android:id="@+id/iv_profile_image"
                     android:layout_width="48dp"
@@ -45,38 +44,27 @@
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Attendance" android:textColor="@color/textColorPrimary" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="24dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Attendance" android:textAppearance="?attr/textAppearanceTitleLarge" android:textColor="?attr/colorOnBackground" android:layout_marginTop="24dp"/>
             <Button
                 android:id="@+id/btnScanQRCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_primary_background"
                 android:text="Mark my Attendance by QR"
-                android:drawableStart="@drawable/ic_qr_code"
-                android:paddingStart="20dp"
-                android:drawablePadding="12dp"
-                android:gravity="start|center_vertical"
-                android:layout_marginTop="12dp"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+                app:icon="@drawable/ic_qr_code"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnterCode"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Mark Attendance by Code"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:backgroundTint="#E0EFFF"
                 app:icon="@drawable/ic_pin_code"
-                app:iconPadding="12dp"
-                app:iconTint="@color/colorPrimary" />
+                android:padding="12dp"/>
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Features" android:textColor="@color/textColorPrimary" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="24dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Features" android:textAppearance="?attr/textAppearanceTitleLarge" android:textColor="?attr/colorOnBackground" android:layout_marginTop="24dp"/>
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,42 +73,42 @@
                 android:rowCount="3"
                 android:useDefaultMargins="true">
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_view_attendance" style="@style/StudentDashboardCard">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/card_view_attendance" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_checklist"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="View My Attendance"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_my_syllabus" style="@style/StudentDashboardCard">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/card_my_syllabus" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_syllabus"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="My Syllabus"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_notice" style="@style/StudentDashboardCard">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/card_notice" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_notifications"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="Notice"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_feedback" style="@style/StudentDashboardCard">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/card_feedback" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_feedback"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="Feedback"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_see_assignments" style="@style/StudentDashboardCard">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/card_see_assignments" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_assignments"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="See Assignments"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_scheduler" style="@style/StudentDashboardCard">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/card_scheduler" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_schedule"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="Scheduler"/>
@@ -136,7 +124,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/student_bottom_nav_menu"
-        app:labelVisibilityMode="labeled"/>
+        app:menu="@menu/student_bottom_nav_menu"/>
 
 </RelativeLayout>
