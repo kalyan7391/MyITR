@@ -57,6 +57,16 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_mark_absentees"
+            style="@style/AdminCardView">
+            <RelativeLayout style="@style/Widget.App.CardContent">
+                <ImageView android:id="@+id/icon_mark_absentees" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_person_add"/>
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toStartOf="@id/arrow3" android:layout_toEndOf="@id/icon_mark_absentees" android:text="Mark Absentees" />
+                <ImageView android:id="@+id/arrow3" style="@style/Widget.App.CardArrow"/>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

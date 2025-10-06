@@ -29,15 +29,12 @@ public class SelectSubjectActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_subjects);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Get unique subject names for the teacher
         List<ClassItem> classes = db.getClassesForTeacher(teacherUsername);
         List<String> subjectNames = classes.stream()
                 .map(ClassItem::getName)
                 .distinct()
                 .collect(Collectors.toList());
 
-        // We can reuse the ClassAdapter for this simple list
-        // The second parameter (description) will be ignored, but the click listener works on the name
         List<ClassItem> subjectItems = subjectNames.stream()
                 .map(name -> new ClassItem(name, ""))
                 .collect(Collectors.toList());
@@ -45,14 +42,18 @@ public class SelectSubjectActivity extends AppCompatActivity {
         ClassAdapter adapter = new ClassAdapter(subjectItems);
         recyclerView.setAdapter(adapter);
 
-        // Handle click on a subject
         adapter.setOnItemClickListener(subjectItem -> {
-            Intent i = new Intent(SelectSubjectActivity.this, GenerateCodeActivity.class);
+            Intent i;
+            if ("absent".equals(attendanceType)) {
+                i = new Intent(SelectSubjectActivity.this, MarkAbsenteesActivity.class);
+            } else {
+                i = new Intent(SelectSubjectActivity.this, GenerateCodeActivity.class);
+            }
             i.putExtra("teacher_username", teacherUsername);
-            i.putExtra("subject", subjectItem.getName()); // Pass the selected subject
+            i.putExtra("subject", subjectItem.getName());
             i.putExtra("type", attendanceType);
             startActivity(i);
-            finish(); // Close this screen
+            finish();
         });
     }
 }

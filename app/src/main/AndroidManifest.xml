@@ -45,6 +45,7 @@
         <activity android:name=".PublishAssignmentActivity" />
         <activity android:name=".ViewTeacherAttendanceActivity" />
         <activity android:name=".SelectSubjectActivity" />
+        <activity android:name=".MarkAbsenteesActivity" />
 
     </application>
 
