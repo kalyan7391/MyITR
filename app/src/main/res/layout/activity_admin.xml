@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorSurface"
         app:navigationIcon="@drawable/ic_menu"
-        app:title="Admin Panel"
+        app:title="Administrator Panel"
         app:titleCentered="true" />
 
     <ScrollView

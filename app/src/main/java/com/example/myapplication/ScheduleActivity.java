@@ -37,16 +37,18 @@ public class ScheduleActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab_add_class);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-        // ✨ FIX: This logic now correctly inflates the menu for all roles
         if ("admin".equals(userRole)) {
+            toolbar.setTitle("Master Schedule");
             fab.setVisibility(View.VISIBLE);
             bottomNav.inflateMenu(R.menu.admin_bottom_nav_menu);
             bottomNav.setSelectedItemId(R.id.nav_schedule);
         } else if ("teacher".equals(userRole)) {
+            toolbar.setTitle("Professor Schedule");
             fab.setVisibility(View.GONE);
             bottomNav.inflateMenu(R.menu.teacher_bottom_nav_menu);
             bottomNav.setSelectedItemId(R.id.nav_schedule);
         } else { // Student
+            toolbar.setTitle("User Schedule");
             fab.setVisibility(View.GONE);
             bottomNav.inflateMenu(R.menu.student_bottom_nav_menu);
         }
