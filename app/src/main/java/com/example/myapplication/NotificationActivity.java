@@ -22,16 +22,15 @@ public class NotificationActivity extends AppCompatActivity {
         userType = getIntent().getStringExtra("userType");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Announcements");
         toolbar.setNavigationOnClickListener(v -> finish());
-
-        // ✨ FIX: All code related to the BottomNavigationView has been removed.
 
         recyclerView = findViewById(R.id.recycler_view_notifications);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Notice> notifications = db.getNotifications(userType);
+        List<Notice> notices = db.getNotifications(userType);
 
-        adapter = new NoticeAdapter(notifications);
+        adapter = new NoticeAdapter(notices);
         recyclerView.setAdapter(adapter);
     }
 }

@@ -7,7 +7,6 @@
     android:background="@color/background"
     android:padding="16dp">
 
-    <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -27,7 +26,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Section Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,27 +35,22 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp" />
 
-            <!-- Card: Add Teacher -->
-            <include layout="@layout/item_admin_card"
+            <include layout="@layout/admin_card_item"
                 android:id="@+id/card_add_teacher"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Card: Manage Teachers -->
-            <include layout="@layout/item_admin_card"
+            <include layout="@layout/admin_card_item"
                 android:id="@+id/card_manage_teachers"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Card: Add Student -->
-            <include layout="@layout/item_admin_card"
+            <include layout="@layout/admin_card_item"
                 android:id="@+id/card_add_student"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Card: Manage Students -->
-            <include layout="@layout/item_admin_card"
+            <include layout="@layout/admin_card_item"
                 android:id="@+id/card_manage_students"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Section Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,15 +59,13 @@
                 android:textColor="?attr/colorOnBackground"
                 android:paddingBottom="8dp" />
 
-            <!-- Card: Send Notification -->
-            <include layout="@layout/item_admin_card"
+            <include layout="@layout/admin_card_item"
                 android:id="@+id/card_send_notification"
                 android:layout_marginBottom="16dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

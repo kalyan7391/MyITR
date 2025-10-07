@@ -3,7 +3,6 @@ package com.example.myapplication;
 public class Notice {
     private String title;
     private String date;
-    // ✨ FIX: Added a field for the full message
     private String message;
 
     public Notice(String title, String date, String message) {
@@ -20,7 +19,6 @@ public class Notice {
         return date;
     }
 
-    // ✨ FIX: Added a getter for the message
     public String getMessage() {
         return message;
     }

@@ -14,7 +14,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
 
     private List<Notice> noticeList;
 
-    // ✨ FIX: The context is no longer needed in the constructor
     public NoticeAdapter(List<Notice> noticeList) {
         this.noticeList = noticeList;
     }
@@ -33,7 +32,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeView
         holder.tvNoticeDate.setText(currentNotice.getDate());
 
         holder.itemView.setOnClickListener(v -> {
-            // ✨ FIX: Get the context directly from the item view, which is safer
             Context context = holder.itemView.getContext();
             new AlertDialog.Builder(context)
                     .setTitle(currentNotice.getTitle())

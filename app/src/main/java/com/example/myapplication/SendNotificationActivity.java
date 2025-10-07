@@ -44,10 +44,10 @@ public class SendNotificationActivity extends AppCompatActivity {
             }
 
             if (db.addNotification(message, userType, subject)) {
-                Toast.makeText(this, "Notification sent", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Announcement sent", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
-                Toast.makeText(this, "Failed to send notification", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Failed to send announcement", Toast.LENGTH_SHORT).show();
             }
         });
     }

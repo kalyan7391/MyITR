@@ -90,7 +90,7 @@
                 <com.google.android.material.card.MaterialCardView android:id="@+id/card_notice" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
                         <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_notifications"/>
-                        <TextView style="@style/StudentDashboardCardText" android:text="Notice"/>
+                        <TextView style="@style/StudentDashboardCardText" android:text="Announcements"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

@@ -64,7 +64,7 @@
             style="@style/AdminCardView">
             <RelativeLayout style="@style/Widget.App.CardContent">
                 <ImageView android:id="@+id/icon_see_notification" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_notifications"/>
-                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_see_notification" android:text="See Notification from Admin" />
+                <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_see_notification" android:text="See Announcement from Admin" />
                 <ImageView style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

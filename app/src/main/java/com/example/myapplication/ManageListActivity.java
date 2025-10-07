@@ -31,7 +31,7 @@ public class ManageListActivity extends AppCompatActivity implements UserAdapter
 
         // ✨ FIX: Use MaterialToolbar class
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(mode.equals("teacher") ? "Manage Teachers" : "Manage Students");
+        toolbar.setTitle(mode.equals("teacher") ? "Manage Professors" : "Manage Users");
         toolbar.setNavigationOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recycler_view_users);

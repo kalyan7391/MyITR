@@ -82,8 +82,8 @@ public class AddTeacherActivity extends AppCompatActivity {
             toggleStudent.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary));
             toggleTeacher.setBackgroundResource(R.drawable.toggle_unselected_background);
             toggleTeacher.setTextColor(ContextCompat.getColor(this, R.color.textColorSecondary));
-            tvEmployeeIdLabel.setText("Student ID");
-            etEmployeeId.setHint("Enter student ID");
+            tvEmployeeIdLabel.setText("User ID");
+            etEmployeeId.setHint("Enter user ID");
         }
     }
 
@@ -104,10 +104,10 @@ public class AddTeacherActivity extends AppCompatActivity {
 
         if (mode.equals("teacher")) {
             isSuccess = db.addTeacher(name, password, id, phone, dob);
-            userType = "Teacher";
+            userType = "Professor";
         } else {
             isSuccess = db.addStudent(name, password, id, phone, dob);
-            userType = "Student";
+            userType = "User";
         }
 
         if (isSuccess) {
