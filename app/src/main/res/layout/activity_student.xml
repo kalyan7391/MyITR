@@ -101,9 +101,11 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView android:id="@+id/card_see_assignments" style="@style/DashboardCard">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_see_assignments"
+                    style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
-                        <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_assignments"/>
+                        <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/task"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="See Assignments"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

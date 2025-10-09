@@ -53,7 +53,7 @@
             android:id="@+id/card_publish_assignment"
             style="@style/AdminCardView">
             <RelativeLayout style="@style/Widget.App.CardContent">
-                <ImageView android:id="@+id/icon_publish_assignment" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_notification_add"/>
+                <ImageView android:id="@+id/icon_publish_assignment" style="@style/Widget.App.CardIcon" android:src="@drawable/task"/>
                 <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_publish_assignment" android:text="Publish Assignment" />
                 <ImageView style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
