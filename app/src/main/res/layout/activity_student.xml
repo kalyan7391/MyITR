@@ -75,7 +75,7 @@
 
                 <com.google.android.material.card.MaterialCardView android:id="@+id/card_view_attendance" style="@style/DashboardCard">
                     <LinearLayout style="@style/StudentDashboardCardContent">
-                        <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_checklist"/>
+                        <ImageView style="@style/StudentDashboardCardIcon" android:src="@drawable/ic_attendance"/>
                         <TextView style="@style/StudentDashboardCardText" android:text="View My Attendance"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

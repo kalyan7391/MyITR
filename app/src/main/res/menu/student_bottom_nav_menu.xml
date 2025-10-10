@@ -10,7 +10,7 @@
         android:title="Attendance" />
     <item
         android:id="@+id/nav_assignments"
-        android:icon="@drawable/ic_assignments"
+        android:icon="@drawable/ic_attendance"
         android:title="Assignments" />
     <item
         android:id="@+id/nav_profile"

@@ -33,7 +33,7 @@
             style="@style/AdminCardView"
             android:layout_marginTop="32dp">
             <RelativeLayout style="@style/Widget.App.CardContent">
-                <ImageView android:id="@+id/icon_mark_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_checklist"/>
+                <ImageView android:id="@+id/icon_mark_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_attendance"/>
                 <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_mark_attendance" android:text="Mark Student Attendance" />
                 <ImageView style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
@@ -43,7 +43,7 @@
             android:id="@+id/card_view_attendance"
             style="@style/AdminCardView">
             <RelativeLayout style="@style/Widget.App.CardContent">
-                <ImageView android:id="@+id/icon_view_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_assignments"/>
+                <ImageView android:id="@+id/icon_view_attendance" style="@style/Widget.App.CardIcon" android:src="@drawable/ic_attendance"/>
                 <TextView style="@style/Widget.App.CardTitle" android:layout_toEndOf="@id/icon_view_attendance" android:text="View Attendance" />
                 <ImageView style="@style/Widget.App.CardArrow"/>
             </RelativeLayout>
